@@ -1,4 +1,4 @@
-#
+# AutoMaths
 
 ## Context
 
@@ -13,6 +13,7 @@
 Data sources :
 - [HoTT source code](https://github.com/HoTT/HoTT)
 - [UniMath repository](https://github.com/UniMath/UniMath)
+
 
 1. Download data from the Git repositories
 2. Iterate over the files in repositories to parse the file name and
@@ -82,8 +83,7 @@ Keyword.Namespace 'Defined'
 
 ## Issues
 
-- The token stream and raw text shouldn't be handled by different networks
-
+- The token stream and raw text shouldn't be handled by different networks.
 This could be solved by training the network with different kind of input datas,
 as deepmind did on the DNC paper. Or we could encode the token type into the
 neural network input along with the raw stream.
