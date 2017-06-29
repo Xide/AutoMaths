@@ -6,6 +6,10 @@ install: "pip install -r docs_requirements.txt"
 jobs:
   include:
     - stage: test
+      language: node_js
+      node_js:
+        - "7"
+      install: "npm i -g broken-link-checker"
       script: ./tests/test_docs.sh
     - stage: deploy
       script: mkdocs gh-deploy
