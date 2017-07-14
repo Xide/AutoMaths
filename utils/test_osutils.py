@@ -4,8 +4,13 @@ import os
 import shutil
 import unittest
 
-from preprocess import \
-    coq_files
+from functools import partial
+
+from osutils import \
+    find_files
+
+# Adapting this test with the coq file pattern fixed into find_files
+coq_files = partial(find_files, regex='^.*\.v$')
 
 
 def touch(fname, mode=0o666, dir_fd=None, **kwargs):

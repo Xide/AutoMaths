@@ -14,44 +14,9 @@ from pygments import highlight
 from pygments.lexers.theorem import CoqLexer
 from pygments.formatters import RawTokenFormatter
 
+from osutils import find_files
+
 log = None
-
-
-def coq_files(folder, recursive=True):
-    """
-    Yield the absolute file path to .v coq files within `folder`.
-
-    :params folder: the base folder to search in.
-    :params recursive: explore subdirectories.
-        :default True
-
-    NOTE: By default, if folder is relative (e.g: "./foo"), it will
-    be relative to the current directory yielded by `os.getcwd`.
-    NOTE: Those files are not open, only the filename is yielded
-    """
-    coq_file_regex = re.compile('^.*\.v$')
-    if not os.path.isabs(folder):
-        folder = os.path.join(os.getcwd(), folder)
-
-    # Iterating over top level directory
-    for f in filter(
-        lambda x: coq_file_regex.match(x),
-        os.listdir(folder)
-    ):
-        yield os.path.join(folder, f)
-
-    if recursive:
-        # Iterating over subdirectories
-        for f in filter(
-            lambda x: os.path.isdir(x),
-            map(
-                lambda x: os.path.join(folder, x),
-                os.listdir(folder)
-            )
-        ):
-            # Flatten results
-            for p in coq_files(f, recursive=recursive):
-                yield p
 
 
 def generate_parser():
@@ -148,7 +113,12 @@ if __name__ == '__main__':
         args.verbose = 0
     setup_logger(args.verbose)
 
-    for fname in coq_files(data_dir, recursive=args.recursive):
+    for fname in \
+            find_files(
+                data_dir,
+                regex='^.*\.v$',
+                recursive=args.recursive
+            ):
         log.info('[PARSING] {}'.format(fname))
         with open(fname, 'r') as f:
             file_content = f.read()
