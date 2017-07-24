@@ -167,7 +167,7 @@ if __name__ == '__main__':
     del lexed_content
 
     # Regular expression matching a raw token line.
-    regex = re.compile('Token\.((?:\w+\.?)+)\s(.*)\n?')
+    regex = re.compile("Token\.((?:\w+\.?)+)\s['|\"](.*)['|\"]\n?")
 
     # Detect errors in file syntax
     parsing_errors = check_raw_token_syntax(parsed_content, regex)
@@ -179,8 +179,8 @@ if __name__ == '__main__':
             'Syntax error:\n- {}'.format(
                 '\n -'.join(
                     map(
-                        lambda l, x: 'line {} : {}'.format(
-                            l, x
+                        lambda x: 'line {} : {}'.format(
+                            x[0], x[1]
                         ),
                         parsing_errors
                     )
