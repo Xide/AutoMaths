@@ -12,6 +12,6 @@ jobs:
       - COMMIT_AUTHOR_EMAIL: germain.gau@gmail.com
     on:
       branch: master
-before_install:
-- openssl aes-256-cbc -K $encrypted_c91c4a142d2a_key -iv $encrypted_c91c4a142d2a_iv
-  -in deploy_key.enc -out deploy_key -d
+# before_install:
+# - openssl aes-256-cbc -K $encrypted_c91c4a142d2a_key -iv $encrypted_c91c4a142d2a_iv
+#   -in deploy_key.enc -out deploy_key -d
