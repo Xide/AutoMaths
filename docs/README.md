@@ -2,18 +2,39 @@
 
 ## Context
 
-### HoTT
-[Free online HoTT book](https://hott.github.io/book/nightly/hott-online-1075-g3c53219.pdf)
+The AutoMaths project aim to create an helper for automated theorem proving using Coq.
+
+
 ### Limits
+
+
+## Install
+
+```sh
+# Clone the GitHub repository
+git clone https://github.com/Xide/AutoMaths.git
+
+# Optional : if you want to build the dataset
+# Clone the data repositories
+make download
+# You can add the -j flag for faster preprocessing
+make preprocess # -j 9
+```
+
+## Usage
 
 ## Architecture
 
-### Data preprocessing
-
-Data sources :
+### Data
+#### Sources
+##### Homotopy Type Theory
 - [HoTT source code](https://github.com/HoTT/HoTT)
-- [UniMath repository](https://github.com/UniMath/UniMath)
+- [Free online HoTT book](https://hott.github.io/book/nightly/hott-online-1075-g3c53219.pdf)
 
+##### UniMath repository
+- [UniMath source code](https://github.com/UniMath/UniMath)
+
+# Preprocessing
 
 1. Download data from the Git repositories
 2. Iterate over the files in repositories to parse the file name and

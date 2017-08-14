@@ -3,6 +3,7 @@
 import os
 import json
 import uuid
+import argparse
 import itertools
 import pandas as pd
 from osutils import find_files
@@ -124,7 +125,23 @@ def generate_df_for_file(fname, file_index=None):
     )
 
 
+def generate_parser():
+    """Generate cli parsing."""
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        '-o',
+        '--output',
+        type=str,
+        help='Destination of the processed file',
+        default='out.om'
+    )
+    return parser
+
+
 if __name__ == '__main__':
+    args = generate_parser().parse_args()
+
     df = pd.DataFrame(columns=dataset_columns)
     for idx, fname in enumerate(find_files(
             os.path.join(
@@ -143,4 +160,4 @@ if __name__ == '__main__':
                 print('Failed to generate dataset for', fname)
                 raise
     print('Exporting dataset to CSV')
-    df.to_csv('results.csv')
+    df.to_csv(args.output)
