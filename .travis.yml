@@ -1,0 +1,17 @@
+language: python
+python:
+- '3.6'
+install: pip install -r docs_requirements.txt
+jobs:
+  include:
+  - stage: deploy
+    script: bash utils/deploy_docs.sh
+    env:
+      global:
+      - ENCRYPTION_LABEL: c91c4a142d2a
+      - COMMIT_AUTHOR_EMAIL: germain.gau@gmail.com
+    on:
+      branch: master
+before_install:
+- openssl aes-256-cbc -K $encrypted_c91c4a142d2a_key -iv $encrypted_c91c4a142d2a_iv
+  -in deploy_key.enc -out deploy_key -d

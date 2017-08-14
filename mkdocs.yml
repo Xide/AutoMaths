@@ -1,4 +1,4 @@
 site_name: AutoMaths
 theme: 'material'
 pages:
-  - Home: README.md
+  - Home: index.md
