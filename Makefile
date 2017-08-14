@@ -9,13 +9,8 @@ OBJ = $(patsubst $(SRC_DIR)/%.v, $(OBJ_DIR)/%.vo, $(SRC))
 
 all:  $(OBJ)
 
-guard-srcs-exists:
-	@find $(SRC_DIR)/ -type f -name '*.v' &>/dev/null || \
-	( \
-		./data/download.sh $(SRC_DIR) && \
-		echo "OBJS" $(OBJ) && \
-		echo "SRCS" $(SRC) \
-	)
+download:
+		./data/download.sh $(SRC_DIR)
 
 
 $(OBJ_DIR)/%.vo: $(SRC_DIR)/%.v
@@ -34,7 +29,9 @@ clean:
 		data/test.csv \
 		data/train.csv
 
-# Delete all generated datas, leaving a clean repository
-fclean: clean
+clean_downloads:
 	$(RM) \
 		data/raw
+
+# Delete all generated datas, leaving a clean repository
+fclean: clean clean_downloads
