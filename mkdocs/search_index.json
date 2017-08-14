@@ -1,0 +1,89 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "AutoMaths\n\n\nContext\n\n\nThe AutoMaths project aim to create an helper for automated theorem proving using Coq.\n\n\nLimits\n\n\nInstall\n\n\n# Clone the GitHub repository\ngit clone https://github.com/Xide/AutoMaths.git\n\n# Optional : if you want to build the dataset\n# Clone the data repositories\nmake download\n# You can add the -j flag for faster preprocessing\nmake preprocess # -j 9\n\n\n\n\nUsage\n\n\nArchitecture\n\n\nData\n\n\nSources\n\n\nHomotopy Type Theory\n\n\n\n\nHoTT source code\n\n\nFree online HoTT book\n\n\n\n\nUniMath repository\n\n\n\n\nUniMath source code\n\n\n\n\nPreprocessing\n\n\n\n\nDownload data from the Git repositories\n\n\nIterate over the files in repositories to parse the file name and\nthe package the file (and therefore it's constructs) are located in.\n\n\nUse the \npygments\n lexer to turn source code into raw token stream\n\n\nStore that token stream to filesystem, keeping only metadatas\n\n\nResolve dependencies for each [\nLemma\n/\nDefinition\n/\nTheorem\n]\n\n\nPackage each one into a separated self-contained csv file\n\n\n\n\nMetadatas:\n- File name\n- File package\n- File definitions\n- File dependencies\n- Definitions dependencies\n\n\nExemple\n\n\nRaw input:\n\n\nDefinition equiv_ind_comp `{IsEquiv A B f} (P : B -> Type)\n  (df : forall x:A, P (f x)) (x : A)\n  : equiv_ind f P df (f x) = df x.\nProof.\n  unfold equiv_ind.\n  rewrite eisadj.\n  rewrite <- transport_compose.\n  exact (apD df (eissect f x)).\nDefined.\n\n\n\n\nToken stream exemple (Proof only here):\n\n\nKeyword.Namespace 'Proof'\nOperator '.'\nKeyword 'unfold'\nName 'equiv_ind'\nOperator '.'\nKeyword 'rewrite'\nName 'eisadj'\nOperator '.'\nKeyword 'rewrite'\nOperator '<-'\nName 'transport_compose'\nOperator '.'\nKeyword.Pseudo 'exact'\nOperator '('\nName 'apD'\nName 'df'\nOperator '('\nName 'eissect'\nName 'f'\nName 'x'\nOperator ')'\nOperator ')'\nOperator '.'\nKeyword.Namespace 'Defined'\n\n\n\n\nNeural network\n\n\nDNC framework\n\n\n\n\nImplementation\n\n\nPaper\n\n\nBlog post\n\n\n\n\nTraining\n\n\nIssues\n\n\n\n\n\n\nThe token stream and raw text shouldn't be handled by different networks.\nThis could be solved by training the network with different kind of input datas,\nas deepmind did on the DNC paper. Or we could encode the token type into the\nneural network input along with the raw stream.\n\n\n\n\n\n\nThe network should learn categorical data instead of an unstructured character\nstream. We need to find a way to turn text data into categorical representations.\nWe could use one-hot encoding to do so, by encoding differently free text (such\n  as naming) and language operators to avoid confusion.\n\n\n\n\n\n\nThere is no Coq parser avaliable in Python, therefore, the dependencies parsing\nwill be done using regex, which is weaker than a generated \nYacc\n parser. However\nas Coq was developped on the top of ML language, there is no centralised BNF grammar\navaliable.",
+            "title": "Home"
+        },
+        {
+            "location": "/#automaths",
+            "text": "",
+            "title": "AutoMaths"
+        },
+        {
+            "location": "/#context",
+            "text": "The AutoMaths project aim to create an helper for automated theorem proving using Coq.",
+            "title": "Context"
+        },
+        {
+            "location": "/#limits",
+            "text": "",
+            "title": "Limits"
+        },
+        {
+            "location": "/#install",
+            "text": "# Clone the GitHub repository\ngit clone https://github.com/Xide/AutoMaths.git\n\n# Optional : if you want to build the dataset\n# Clone the data repositories\nmake download\n# You can add the -j flag for faster preprocessing\nmake preprocess # -j 9",
+            "title": "Install"
+        },
+        {
+            "location": "/#usage",
+            "text": "",
+            "title": "Usage"
+        },
+        {
+            "location": "/#architecture",
+            "text": "",
+            "title": "Architecture"
+        },
+        {
+            "location": "/#data",
+            "text": "",
+            "title": "Data"
+        },
+        {
+            "location": "/#sources",
+            "text": "",
+            "title": "Sources"
+        },
+        {
+            "location": "/#homotopy-type-theory",
+            "text": "HoTT source code  Free online HoTT book",
+            "title": "Homotopy Type Theory"
+        },
+        {
+            "location": "/#unimath-repository",
+            "text": "UniMath source code",
+            "title": "UniMath repository"
+        },
+        {
+            "location": "/#preprocessing",
+            "text": "Download data from the Git repositories  Iterate over the files in repositories to parse the file name and\nthe package the file (and therefore it's constructs) are located in.  Use the  pygments  lexer to turn source code into raw token stream  Store that token stream to filesystem, keeping only metadatas  Resolve dependencies for each [ Lemma / Definition / Theorem ]  Package each one into a separated self-contained csv file   Metadatas:\n- File name\n- File package\n- File definitions\n- File dependencies\n- Definitions dependencies",
+            "title": "Preprocessing"
+        },
+        {
+            "location": "/#exemple",
+            "text": "Raw input:  Definition equiv_ind_comp `{IsEquiv A B f} (P : B -> Type)\n  (df : forall x:A, P (f x)) (x : A)\n  : equiv_ind f P df (f x) = df x.\nProof.\n  unfold equiv_ind.\n  rewrite eisadj.\n  rewrite <- transport_compose.\n  exact (apD df (eissect f x)).\nDefined.  Token stream exemple (Proof only here):  Keyword.Namespace 'Proof'\nOperator '.'\nKeyword 'unfold'\nName 'equiv_ind'\nOperator '.'\nKeyword 'rewrite'\nName 'eisadj'\nOperator '.'\nKeyword 'rewrite'\nOperator '<-'\nName 'transport_compose'\nOperator '.'\nKeyword.Pseudo 'exact'\nOperator '('\nName 'apD'\nName 'df'\nOperator '('\nName 'eissect'\nName 'f'\nName 'x'\nOperator ')'\nOperator ')'\nOperator '.'\nKeyword.Namespace 'Defined'",
+            "title": "Exemple"
+        },
+        {
+            "location": "/#neural-network",
+            "text": "",
+            "title": "Neural network"
+        },
+        {
+            "location": "/#dnc-framework",
+            "text": "Implementation  Paper  Blog post",
+            "title": "DNC framework"
+        },
+        {
+            "location": "/#training",
+            "text": "",
+            "title": "Training"
+        },
+        {
+            "location": "/#issues",
+            "text": "The token stream and raw text shouldn't be handled by different networks.\nThis could be solved by training the network with different kind of input datas,\nas deepmind did on the DNC paper. Or we could encode the token type into the\nneural network input along with the raw stream.    The network should learn categorical data instead of an unstructured character\nstream. We need to find a way to turn text data into categorical representations.\nWe could use one-hot encoding to do so, by encoding differently free text (such\n  as naming) and language operators to avoid confusion.    There is no Coq parser avaliable in Python, therefore, the dependencies parsing\nwill be done using regex, which is weaker than a generated  Yacc  parser. However\nas Coq was developped on the top of ML language, there is no centralised BNF grammar\navaliable.",
+            "title": "Issues"
+        }
+    ]
+}

@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="./assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.8.1">
+    
+    
+      
+        <title>AutoMaths</title>
+      
+    
+    
+      <script src="./assets/javascripts/modernizr-1df76c4e58.js"></script>
+    
+    
+      <link rel="stylesheet" href="./assets/stylesheets/application-bfecc7305d.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+  
+  
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <a href="." title="AutoMaths" class="md-icon md-icon--home md-header-nav__button">
+          </a>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+            
+            Home
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">close</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    
+      <i class="md-icon md-icon--home md-nav__button"></i>
+    
+    AutoMaths
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Home
+      </label>
+    
+    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+      Home
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#context" title="Context" class="md-nav__link">
+    Context
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limits" title="Limits" class="md-nav__link">
+    Limits
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install" title="Install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" title="Usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" title="Architecture" class="md-nav__link">
+    Architecture
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" title="Data" class="md-nav__link">
+    Data
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sources" title="Sources" class="md-nav__link">
+    Sources
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#homotopy-type-theory" title="Homotopy Type Theory" class="md-nav__link">
+    Homotopy Type Theory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unimath-repository" title="UniMath repository" class="md-nav__link">
+    UniMath repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#context" title="Context" class="md-nav__link">
+    Context
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limits" title="Limits" class="md-nav__link">
+    Limits
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install" title="Install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" title="Usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" title="Architecture" class="md-nav__link">
+    Architecture
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" title="Data" class="md-nav__link">
+    Data
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sources" title="Sources" class="md-nav__link">
+    Sources
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#homotopy-type-theory" title="Homotopy Type Theory" class="md-nav__link">
+    Homotopy Type Theory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unimath-repository" title="UniMath repository" class="md-nav__link">
+    UniMath repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="automaths">AutoMaths</h1>
+<h2 id="context">Context</h2>
+<p>The AutoMaths project aim to create an helper for automated theorem proving using Coq.</p>
+<h3 id="limits">Limits</h3>
+<h2 id="install">Install</h2>
+<pre><code class="sh"># Clone the GitHub repository
+git clone https://github.com/Xide/AutoMaths.git
+
+# Optional : if you want to build the dataset
+# Clone the data repositories
+make download
+# You can add the -j flag for faster preprocessing
+make preprocess # -j 9
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+<h2 id="architecture">Architecture</h2>
+<h3 id="data">Data</h3>
+<h4 id="sources">Sources</h4>
+<h5 id="homotopy-type-theory">Homotopy Type Theory</h5>
+<ul>
+<li><a href="https://github.com/HoTT/HoTT">HoTT source code</a></li>
+<li><a href="https://hott.github.io/book/nightly/hott-online-1075-g3c53219.pdf">Free online HoTT book</a></li>
+</ul>
+<h5 id="unimath-repository">UniMath repository</h5>
+<ul>
+<li><a href="https://github.com/UniMath/UniMath">UniMath source code</a></li>
+</ul>
+<h1 id="preprocessing">Preprocessing</h1>
+<ol>
+<li>Download data from the Git repositories</li>
+<li>Iterate over the files in repositories to parse the file name and
+the package the file (and therefore it's constructs) are located in.</li>
+<li>Use the <code>pygments</code> lexer to turn source code into raw token stream</li>
+<li>Store that token stream to filesystem, keeping only metadatas</li>
+<li>Resolve dependencies for each [<code>Lemma</code>/<code>Definition</code>/<code>Theorem</code>]</li>
+<li>Package each one into a separated self-contained csv file</li>
+</ol>
+<p>Metadatas:
+- File name
+- File package
+- File definitions
+- File dependencies
+- Definitions dependencies</p>
+<h4 id="exemple">Exemple</h4>
+<p>Raw input:</p>
+<pre><code>Definition equiv_ind_comp `{IsEquiv A B f} (P : B -&gt; Type)
+  (df : forall x:A, P (f x)) (x : A)
+  : equiv_ind f P df (f x) = df x.
+Proof.
+  unfold equiv_ind.
+  rewrite eisadj.
+  rewrite &lt;- transport_compose.
+  exact (apD df (eissect f x)).
+Defined.
+</code></pre>
+
+<p>Token stream exemple (Proof only here):</p>
+<pre><code>Keyword.Namespace 'Proof'
+Operator '.'
+Keyword 'unfold'
+Name 'equiv_ind'
+Operator '.'
+Keyword 'rewrite'
+Name 'eisadj'
+Operator '.'
+Keyword 'rewrite'
+Operator '&lt;-'
+Name 'transport_compose'
+Operator '.'
+Keyword.Pseudo 'exact'
+Operator '('
+Name 'apD'
+Name 'df'
+Operator '('
+Name 'eissect'
+Name 'f'
+Name 'x'
+Operator ')'
+Operator ')'
+Operator '.'
+Keyword.Namespace 'Defined'
+</code></pre>
+
+<h3 id="neural-network">Neural network</h3>
+<h4 id="dnc-framework">DNC framework</h4>
+<ul>
+<li><a href="https://github.com/deepmind/dnc">Implementation</a></li>
+<li><a href="https://www.nature.com/articles/nature20101.epdf?author_access_token=ImTXBI8aWbYxYQ51Plys8NRgN0jAjWel9jnR3ZoTv0MggmpDmwljGswxVdeocYSurJ3hxupzWuRNeGvvXnoO8o4jTJcnAyhGuZzXJ1GEaD-Z7E6X_a9R-xqJ9TfJWBqz">Paper</a></li>
+<li><a href="https://deepmind.com/blog/differentiable-neural-computers/">Blog post</a></li>
+</ul>
+<h2 id="training">Training</h2>
+<h2 id="issues">Issues</h2>
+<ul>
+<li>
+<p>The token stream and raw text shouldn't be handled by different networks.
+This could be solved by training the network with different kind of input datas,
+as deepmind did on the DNC paper. Or we could encode the token type into the
+neural network input along with the raw stream.</p>
+</li>
+<li>
+<p>The network should learn categorical data instead of an unstructured character
+stream. We need to find a way to turn text data into categorical representations.
+We could use one-hot encoding to do so, by encoding differently free text (such
+  as naming) and language operators to avoid confusion.</p>
+</li>
+<li>
+<p>There is no Coq parser avaliable in Python, therefore, the dependencies parsing
+will be done using regex, which is weaker than a generated <code>Yacc</code> parser. However
+as Coq was developped on the top of ML language, there is no centralised BNF grammar
+avaliable.</p>
+</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="./assets/javascripts/application-6940329b9f.js"></script>
+      
+      
+      <script>app.initialize({url:{base:"."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
