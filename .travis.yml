@@ -7,7 +7,7 @@ jobs:
   - stage: deploy
     script: bash utils/deploy_docs.sh
     env:
-    - ENCRYPTION_LABEL: "c91c4a142d2a"
+    - ENCRYPTION_LABEL: c91c4a142d2a
     - COMMIT_AUTHOR_EMAIL: "germain.gau@gmail.com"
     on:
       branch: master
