@@ -23,7 +23,7 @@
     1. Resolve dependencies for each definition
     2. Create train and test dataset of proofs from `data/agg.csv`
 
-### Exemple
+### Example
 
 
 | type         | Raw |
@@ -94,3 +94,24 @@ Keyword.Namespace 'Defined'
 
 
 ```
+
+## Analysis
+
+
+### Token types
+
+Repartition of the tokens on the raw dataset (`data/agg.csv`) containing the whole token streams.
+
+![](assets/raw_token_repartition.png)
+
+Data cleaning operations :
+
+* Remove empty texts tokens as they are irrelevent to learn
+* Removed comments tokens
+* Removed file with lexing errors
+
+![](assets/clean_token_repartition.png)
+
+Tokens located directly in proofs, including definitions.
+
+![](assets/proof_token_repartition.png)
