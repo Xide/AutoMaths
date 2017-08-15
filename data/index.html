@@ -208,8 +208,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#exemple" title="Exemple" class="md-nav__link">
-    Exemple
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis" title="Analysis" class="md-nav__link">
+    Analysis
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-types" title="Token types" class="md-nav__link">
+    Token types
   </a>
   
 </li>
@@ -284,8 +304,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#exemple" title="Exemple" class="md-nav__link">
-    Exemple
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis" title="Analysis" class="md-nav__link">
+    Analysis
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-types" title="Token types" class="md-nav__link">
+    Token types
   </a>
   
 </li>
@@ -345,7 +385,7 @@ the package the file (and therefore it's constructs) are located in.</li>
 </ol>
 </li>
 </ul>
-<h3 id="exemple">Exemple</h3>
+<h3 id="example">Example</h3>
 <table>
 <thead>
 <tr>
@@ -425,6 +465,20 @@ Keyword.Namespace 'Defined'
 
 
 </code></pre>
+
+<h2 id="analysis">Analysis</h2>
+<h3 id="token-types">Token types</h3>
+<p>Repartition of the tokens on the raw dataset (<code>data/agg.csv</code>) containing the whole token streams.</p>
+<p><img alt="" src="../assets/raw_token_repartition.png" /></p>
+<p>Data cleaning operations :</p>
+<ul>
+<li>Remove empty texts tokens as they are irrelevent to learn</li>
+<li>Removed comments tokens</li>
+<li>Removed file with lexing errors</li>
+</ul>
+<p><img alt="" src="../assets/clean_token_repartition.png" /></p>
+<p>Tokens located directly in proofs, including definitions.</p>
+<p><img alt="" src="../assets/proof_token_repartition.png" /></p>
                 
                   
                 
