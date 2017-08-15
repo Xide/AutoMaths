@@ -24,7 +24,7 @@ $(OBJ_DIR)/%.vo: $(SRC_DIR)/%.v
 	python3 utils/preprocess.py "$<" -o "$@"
 
 install:
-	pip install -r requirements.txt
+	pip install -r requirements.txt --user
 
 
 # Delete preprocessing and rnutime generated datas
