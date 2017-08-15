@@ -1,5 +1,7 @@
 # AutoMaths
 
+[![Build Status](https://travis-ci.org/Xide/AutoMaths.svg?branch=master)](https://travis-ci.org/Xide/AutoMaths)
+
 ## Context
 
 The AutoMaths project aim to create an helper for automated theorem proving using Coq.
