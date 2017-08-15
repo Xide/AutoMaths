@@ -2,3 +2,4 @@ site_name: AutoMaths
 theme: 'material'
 pages:
   - Home: index.md
+  - Data: data.md
