@@ -1,31 +1,29 @@
-
 RM	:= rm -rf
 
-SRC_DIR := ./data/raw
-OBJ_DIR := ./data/objs
+SRC_DIR := $(PWD)/data/raw
+OBJ_DIR := $(PWD)/data/objs
 
 SRC = $(shell find $(SRC_DIR)/ -type f -name '*.v' 2>/dev/null)
 OBJ = $(patsubst $(SRC_DIR)/%.v, $(OBJ_DIR)/%.vo, $(SRC))
 
 DATASET_AGGREGATED = $(PWD)/data/agg.csv
 
-all:  $(OBJ)
-
 $(DATASET_AGGREGATED): $(OBJ)
-	python3 utils/aggregate.py -o $(DATASET_AGGREGATED)
+	python3 srcs/preprocess/aggregate.py -s $(OBJ_DIR) -o $(DATASET_AGGREGATED)
 
-preprocess: $(DATASET_AGGREGATED)
-
-download:
+$(SRC_DIR):
 		./data/download.sh $(SRC_DIR)
 
 $(OBJ_DIR)/%.vo: $(SRC_DIR)/%.v
 	@mkdir -p "$(@D)"
-	python3 utils/preprocess.py "$<" -o "$@"
+	python3 srcs/preprocess/preprocess.py "$<" -o "$@"
+
+all: preprocess
+
+preprocess: $(SRC_DIR) $(OBJ) $(DATASET_AGGREGATED)
 
 install:
 	pip install -r requirements.txt --user
-
 
 # Delete preprocessing and rnutime generated datas
 clean:
@@ -48,5 +46,4 @@ fclean: clean clean_downloads
 	fclean \
 	clean_downloads \
 	install \
-	download \
 	preprocess

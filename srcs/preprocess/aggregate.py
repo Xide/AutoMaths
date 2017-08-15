@@ -1,6 +1,5 @@
 """Aggregate raw objects into a single csv dataset."""
 
-import os
 import json
 import uuid
 import argparse
@@ -136,6 +135,13 @@ def generate_parser():
         help='Destination of the processed file',
         default='out.om'
     )
+
+    parser.add_argument(
+        '-s',
+        '--source',
+        type=str,
+        help='Source directory of the coq files'
+    )
     return parser
 
 
@@ -144,11 +150,7 @@ if __name__ == '__main__':
 
     df = pd.DataFrame(columns=dataset_columns)
     for idx, fname in enumerate(find_files(
-            os.path.join(
-                os.path.abspath(os.path.dirname(os.path.dirname(__file__))),
-                'data',
-                'objs'
-            ),
+            args.source,
             regex='^.*\.vo$'
             )):
             print('[{}] {}'.format(idx, fname), end='\n')
