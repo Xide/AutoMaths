@@ -10,9 +10,8 @@
 ## Preprocessing
 
 
-* `make download`
-    - Download data from the Git repositories
 * `make preprocess`
+    - Download data from the Git repositories
     - Iterate over the files in repositories to parse the file name and
     the package the file (and therefore it's constructs) are located in.
     - Use the `pygments` lexer to turn source code into raw token stream
