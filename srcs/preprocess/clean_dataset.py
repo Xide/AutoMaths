@@ -1,6 +1,27 @@
 """Process the raw aggredated dataset to remove unused values."""
 
 import re
+import pandas as pd
+from functools import reduce
+
+
+def reindex_for_file(df):
+    """Reindex tokens ids on a file."""
+    sorted_df = df.sort_values('token_id')
+    sorted_df['token_id'] = list(range(len(df)))
+    return sorted_df
+
+
+def reindex_dataset(df):
+    """Delete gaps in token_id fields."""
+    reindex_for_file(df[df['file_id'] == 0])
+    return reduce(
+        lambda x, y: pd.concat([x, y]),
+        map(
+            lambda x: reindex_for_file(df[df['file_id'] == x]),
+            range(len(df['file_id'].unique()))
+        )
+    )
 
 
 def clean_dataset(df):
@@ -40,12 +61,12 @@ def clean_dataset(df):
 
 def main(args):
     """Command line wrapper to clean a dataset."""
-    import pandas as pd
-
     print('Cleaning: loading Dataset')
     df = pd.DataFrame.from_csv(args.input)
     print('Cleaning: cleaning Dataset')
     df, _ = clean_dataset(df)
+    print('Cleaning: reindexing Dataset')
+    df = reindex_dataset(df)
     print('Cleaning: exporting Dataset')
     df.to_csv(args.output)
     print('Cleaning: Done')
