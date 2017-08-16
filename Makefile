@@ -12,7 +12,7 @@ DATASET_CLEANED = $(PWD)/data/clean.csv
 $(DATASET_CLEANED): $(DATASET_AGGREGATED)
 	python3 srcs/preprocess/clean_dataset.py -i $(DATASET_AGGREGATED) -o $(DATASET_CLEANED)
 
-$(DATASET_AGGREGATED): $(OBJ)
+$(DATASET_AGGREGATED): $(SRC_DIR) $(OBJ)
 	python3 srcs/preprocess/aggregate.py -s $(OBJ_DIR) -o $(DATASET_AGGREGATED)
 
 $(SRC_DIR):
@@ -24,7 +24,7 @@ $(OBJ_DIR)/%.vo: $(SRC_DIR)/%.v
 
 all: preprocess
 
-preprocess: $(SRC_DIR) $(OBJ) $(DATASET_CLEANED)
+preprocess: $(DATASET_CLEANED)
 
 install:
 	pip install -r requirements.txt --user
