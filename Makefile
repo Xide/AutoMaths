@@ -7,6 +7,10 @@ SRC = $(shell find $(SRC_DIR)/ -type f -name '*.v' 2>/dev/null)
 OBJ = $(patsubst $(SRC_DIR)/%.v, $(OBJ_DIR)/%.vo, $(SRC))
 
 DATASET_AGGREGATED = $(PWD)/data/agg.csv
+DATASET_CLEANED = $(PWD)/data/clean.csv
+
+$(DATASET_CLEANED): $(DATASET_AGGREGATED)
+	python3 srcs/preprocess/clean_dataset.py -i $(DATASET_AGGREGATED) -o $(DATASET_CLEANED)
 
 $(DATASET_AGGREGATED): $(OBJ)
 	python3 srcs/preprocess/aggregate.py -s $(OBJ_DIR) -o $(DATASET_AGGREGATED)
@@ -20,7 +24,7 @@ $(OBJ_DIR)/%.vo: $(SRC_DIR)/%.v
 
 all: preprocess
 
-preprocess: $(SRC_DIR) $(OBJ) $(DATASET_AGGREGATED)
+preprocess: $(SRC_DIR) $(OBJ) $(DATASET_CLEANED)
 
 install:
 	pip install -r requirements.txt --user
@@ -31,6 +35,7 @@ clean:
 		data/objs \
 		data/runs \
 		data/agg.csv \
+		data/clean.csv \
 		data/test.csv \
 		data/train.csv
 

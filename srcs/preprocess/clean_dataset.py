@@ -36,3 +36,43 @@ def clean_dataset(df):
     clean_stats['EMPTY_TEXT'] = n - len(df)
 
     return df, clean_stats
+
+
+def main(args):
+    """Command line wrapper to clean a dataset."""
+    import pandas as pd
+
+    print('Cleaning: loading Dataset')
+    df = pd.DataFrame.from_csv(args.input)
+    print('Cleaning: cleaning Dataset')
+    df, _ = clean_dataset(df)
+    print('Cleaning: exporting Dataset')
+    df.to_csv(args.output)
+    print('Cleaning: Done')
+
+
+if __name__ == '__main__':
+    import sys
+    import argparse
+
+    def generate_parser():
+        """Generate cli parsing."""
+        parser = argparse.ArgumentParser()
+
+        parser.add_argument(
+            '-o',
+            '--output',
+            type=str,
+            help='Destination of the processed file',
+            default='out.om'
+        )
+
+        parser.add_argument(
+            '-i',
+            '--input',
+            type=str,
+            help='path to the aggregated dataset.'
+        )
+        return parser
+    main(generate_parser().parse_args())
+    sys.exit(0)
