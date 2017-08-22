@@ -5,6 +5,7 @@ import uuid
 import argparse
 import itertools
 import pandas as pd
+from os import path
 from osutils import find_files
 
 dataset_columns = [
@@ -36,7 +37,7 @@ def incrementer():
     return fn
 
 
-def generate_df_for_file(fname, file_index=None):
+def generate_df_for_file(fname, file_index=None, root=None):
     """
     Create DataFrame from raw tokens in a file.
 
@@ -46,6 +47,7 @@ def generate_df_for_file(fname, file_index=None):
     :param fname: path of the raw dataset
     :param file_index: global_index of the current_file
         default: `uuid.uuid4()`
+    :param root: root folder to remove in the final path.
     :rtype: pandas.DataFrame
     :return: DataFrame of this file tokens with labels
     .. note:: this create 3 intermediate lists
@@ -60,6 +62,10 @@ def generate_df_for_file(fname, file_index=None):
 
     with open(fname, 'r') as f:
         j = json.load(f)
+
+    fmt_fname = path.splitext(
+        fname[len(path.abspath(root)):] if root is not None else fname
+    )[0]
 
     # Little hack here because Abort is not considered as
     # a flow control token, but it clashes with it's usage in
@@ -113,9 +119,9 @@ def generate_df_for_file(fname, file_index=None):
         columns=dataset_columns,
 
         data=zip(
-            infiniteof(file_index),
-            range(len(j['contents'])),
-            infiniteof(fname),
+            infiniteof(int(file_index)),
+            map(int, range(len(j['contents']))),
+            infiniteof(fmt_fname),
             [x[0] for x in j['contents']],
             [x[1] for x in j['contents']],
             map(context_setter, enumerate(j['contents'])),
@@ -156,7 +162,7 @@ if __name__ == '__main__':
             print('[{}] {}'.format(idx, fname), end='\n')
             try:
                 df = df.append(
-                    generate_df_for_file(fname, idx)
+                    generate_df_for_file(fname, idx, root=args.source)
                 )
             except RuntimeError:
                 print('Failed to generate dataset for', fname)
