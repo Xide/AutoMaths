@@ -1,3 +1,5 @@
 pygments
 coloredlogs
 sacred
+networkx
+pandas
