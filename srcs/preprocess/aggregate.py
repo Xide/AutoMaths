@@ -167,5 +167,13 @@ if __name__ == '__main__':
             except RuntimeError:
                 print('Failed to generate dataset for', fname)
                 raise
+
+    def convert(x):
+        """Convert file_id and token_id to int."""
+        try:
+            return x.astype(int)
+        except:
+            return x
+
     print('Exporting dataset to CSV')
-    df.to_csv(args.output)
+    df.apply(convert).to_csv(args.output)
