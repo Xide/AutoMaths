@@ -14,7 +14,6 @@ def reindex_for_file(df):
 
 def reindex_dataset(df):
     """Delete gaps in token_id fields."""
-    reindex_for_file(df[df['file_id'] == 0])
     return reduce(
         lambda x, y: pd.concat([x, y]),
         map(
