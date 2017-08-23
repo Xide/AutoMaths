@@ -234,6 +234,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#proofs" title="Proofs" class="md-nav__link">
+    Proofs
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -245,6 +252,30 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../implementation/" title="Implementation" class="md-nav__link">
+      Implementation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" title="Roadmap" class="md-nav__link">
+      Roadmap
+    </a>
   </li>
 
     
@@ -330,6 +361,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#proofs" title="Proofs" class="md-nav__link">
+    Proofs
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -363,25 +401,38 @@
 </ul>
 <h2 id="preprocessing">Preprocessing</h2>
 <ul>
-<li>
-<p><code>make preprocess</code></p>
-<ul>
-<li>Download data from the Git repositories</li>
-<li>Iterate over the files in repositories to parse the file name and
-the package the file (and therefore it's constructs) are located in.</li>
-<li>Use the <code>pygments</code> lexer to turn source code into raw token stream</li>
-<li>Store that <a href="#token_stream">token stream</a> to filesystem, keeping only metadatas</li>
-<li>Package each one into a separated self-contained csv file <code>data/agg.csv</code></li>
+<li><code>make preprocess</code></li>
 </ul>
-</li>
-<li>
-<p>TODO:</p>
-<ol>
-<li>Resolve dependencies for each definition</li>
-<li>Create train and test dataset of proofs from <code>data/agg.csv</code></li>
-</ol>
-</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data/download.sh</td>
+<td>Download data from the Git repositories</td>
+</tr>
+<tr>
+<td>srcs/preprocess/preprocess.py</td>
+<td>Create intermediate files containing the <a href="#token_stream">tokens stream</a></td>
+</tr>
+<tr>
+<td>srcs/preprocess/aggregate.py</td>
+<td>Aggreate all intermediate files in a single csv dataset <code>data/agg.csv</code></td>
+</tr>
+<tr>
+<td>srcs/preprocess/clean_dataset.py</td>
+<td>Clean the aggregated dataset</td>
+</tr>
+<tr>
+<td>srcs/preprocess/dependencies.py</td>
+<td>Generate dependency graph for the dataset <code>data/dependencies.gexf</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="example">Example</h3>
 <table>
 <thead>
@@ -406,7 +457,7 @@ the package the file (and therefore it's constructs) are located in.</li>
 </tbody>
 </table>
 <h4 id="raw-input"><a name="raw_input"></a>Raw input</h4>
-<pre><code>Definition equiv_ind_comp `{IsEquiv A B f} (P : B -&gt; Type)
+<div class="highlight"><pre><span></span>Definition equiv_ind_comp `{IsEquiv A B f} (P : B -&gt; Type)
   (df : forall x:A, P (f x)) (x : A)
   : equiv_ind f P df (f x) = df x.
 Proof.
@@ -415,54 +466,279 @@ Proof.
   rewrite &lt;- transport_compose.
   exact (apD df (eissect f x)).
 Defined.
-</code></pre>
+</pre></div>
 
 <h4 id="token-stream"><a name="token_stream"></a>Token stream</h4>
-<pre><code>Keyword.Namespace 'Proof'
-Operator '.'
-Keyword 'unfold'
-Name 'equiv_ind'
-Operator '.'
-Keyword 'rewrite'
-Name 'eisadj'
-Operator '.'
-Keyword 'rewrite'
-Operator '&lt;-'
-Name 'transport_compose'
-Operator '.'
-Keyword.Pseudo 'exact'
-Operator '('
-Name 'apD'
-Name 'df'
-Operator '('
-Name 'eissect'
-Name 'f'
-Name 'x'
-Operator ')'
-Operator ')'
-Operator '.'
-Keyword.Namespace 'Defined'
-</code></pre>
+<div class="highlight"><pre><span></span>Keyword.Namespace &#39;Proof&#39;
+Operator &#39;.&#39;
+Keyword &#39;unfold&#39;
+Name &#39;equiv_ind&#39;
+Operator &#39;.&#39;
+Keyword &#39;rewrite&#39;
+Name &#39;eisadj&#39;
+Operator &#39;.&#39;
+Keyword &#39;rewrite&#39;
+Operator &#39;&lt;-&#39;
+Name &#39;transport_compose&#39;
+Operator &#39;.&#39;
+Keyword.Pseudo &#39;exact&#39;
+Operator &#39;(&#39;
+Name &#39;apD&#39;
+Name &#39;df&#39;
+Operator &#39;(&#39;
+Name &#39;eissect&#39;
+Name &#39;f&#39;
+Name &#39;x&#39;
+Operator &#39;)&#39;
+Operator &#39;)&#39;
+Operator &#39;.&#39;
+Keyword.Namespace &#39;Defined&#39;
+</pre></div>
 
 <h4 id="aggregated-csv-dataset"><a name="csv_agg"></a> Aggregated CSV dataset</h4>
-<pre><code class="csv">,file_id,token_id,file,token,raw,proof_context,proof_id
-0,0.0,0.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Keyword.Namespace,Require,,
-1,0.0,1.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Text, ,,
-2,0.0,2.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Keyword.Namespace,Import,,
-3,0.0,3.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Text, ,,
-
-...
-
-15546,590.0,15546.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Keyword,apply,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15547,590.0,15547.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Text, ,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15548,590.0,15548.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Name,i,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15549,590.0,15549.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Operator,.,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15550,590.0,15550.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Text,\n,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15551,590.0,15551.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Keyword.Namespace,Defined,leave,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-
-
-</code></pre>
-
+<table>
+<thead>
+<tr>
+<th></th>
+<th>file_id</th>
+<th>token_id</th>
+<th>file</th>
+<th>token</th>
+<th>raw</th>
+<th>proof_context</th>
+<th>proof_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>/HoTT/theories/ExcludedMiddle</td>
+<td>Keyword.Namespace</td>
+<td>Require</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>/HoTT/theories/ExcludedMiddle</td>
+<td>Text</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>/HoTT/theories/ExcludedMiddle</td>
+<td>Keyword.Namespace</td>
+<td>Import</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>/HoTT/theories/ExcludedMiddle</td>
+<td>Text</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>15554</td>
+<td>590</td>
+<td>15554</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Comment</td>
+<td>(*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15555</td>
+<td>590</td>
+<td>15555</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Comment</td>
+<td>*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15556</td>
+<td>590</td>
+<td>15556</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Comment</td>
+<td>END OF FILE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15557</td>
+<td>590</td>
+<td>15557</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Comment</td>
+<td>*)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15558</td>
+<td>590</td>
+<td>15558</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Text</td>
+<td>\n</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="cleaned-csv-dataset"><a name="csv_clean"></a> Cleaned CSV dataset</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>file_id</th>
+<th>token_id</th>
+<th>file</th>
+<th>token</th>
+<th>raw</th>
+<th>proof_context</th>
+<th>proof_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>/HoTT/theories/ExcludedMiddle</td>
+<td>Keyword.Namespace</td>
+<td>Require</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>/HoTT/theories/ExcludedMiddle</td>
+<td>Keyword.Namespace</td>
+<td>Import</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>2</td>
+<td>/HoTT/theories/ExcludedMiddle</td>
+<td>Name</td>
+<td>HoTT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>3</td>
+<td>/HoTT/theories/ExcludedMiddle</td>
+<td>Operator</td>
+<td>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>15550</td>
+<td>590</td>
+<td>8936</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Text</td>
+<td>\n</td>
+<td></td>
+<td>0ccaca46-cbd3-4641-b18e-fd448ffbf0fe</td>
+</tr>
+<tr>
+<td>15551</td>
+<td>590</td>
+<td>8937</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Keyword.Namespace</td>
+<td>Defined</td>
+<td>leave</td>
+<td>0ccaca46-cbd3-4641-b18e-fd448ffbf0fe</td>
+</tr>
+<tr>
+<td>15552</td>
+<td>590</td>
+<td>8938</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Operator</td>
+<td>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15553</td>
+<td>590</td>
+<td>8939</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Text</td>
+<td>\n\n</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15558</td>
+<td>590</td>
+<td>8940</td>
+<td>/UniMath/UniMath/PAdics/lemmas</td>
+<td>Text</td>
+<td>\n</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="analysis">Analysis</h2>
 <h3 id="token-types">Token types</h3>
 <p>Repartition of the tokens on the raw dataset (<code>data/agg.csv</code>) containing the whole token streams.</p>
@@ -476,6 +752,7 @@ Keyword.Namespace 'Defined'
 <p><img alt="" src="../assets/clean_token_repartition.png" /></p>
 <p>Tokens located directly in proofs, including definitions.</p>
 <p><img alt="" src="../assets/proof_token_repartition.png" /></p>
+<h3 id="proofs">Proofs</h3>
                 
                   
                 
@@ -508,6 +785,20 @@ Keyword.Namespace 'Defined'
             </div>
           </a>
         
+        
+          <a href="../implementation/" title="Implementation" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Implementation
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

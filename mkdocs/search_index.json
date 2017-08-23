@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/",
-            "text": "AutoMaths\n\n\n\n\nContext\n\n\nThe AutoMaths project aim to create an helper for automated theorem proving using Coq.\n\n\nLimits\n\n\nRequirements\n\n\n\n\nPython3 (tested with python 3.4.5)\n\n\nTensorflow\n\n\n\n\nInstall\n\n\n# Clone the GitHub repository\ngit clone https://github.com/Xide/AutoMaths.git\n\n# Install the python dependencies (can be seen in requirements.txt)\n# Default install them in the user home directory.\nmake install\n\n# Optional : if you want to build the dataset\n# Clone the data repositories\nmake download\n# You can add the -j flag for faster preprocessing\nmake preprocess # -j 9\n\n\n\n\nUsage\n\n\nArchitecture\n\n\nNeural network\n\n\nDNC framework\n\n\n\n\nImplementation\n\n\nPaper\n\n\nBlog post\n\n\n\n\nTraining\n\n\nIssues\n\n\n\n\n\n\nThe token stream and raw text shouldn't be handled by different networks.\nThis could be solved by training the network with different kind of input datas,\nas deepmind did on the DNC paper. Or we could encode the token type into the\nneural network input along with the raw stream.\n\n\n\n\n\n\nThe network should learn categorical data instead of an unstructured character\nstream. We need to find a way to turn text data into categorical representations.\nWe could use one-hot encoding to do so, by encoding differently free text (such\n  as naming) and language operators to avoid confusion.\n\n\n\n\n\n\nThere is no Coq parser avaliable in Python, therefore, the dependencies parsing\nwill be done using regex, which is weaker than a generated \nYacc\n parser. However\nas Coq was developped on the top of ML language, there is no centralised BNF grammar\navaliable.",
+            "text": "AutoMaths\n\n\n\n\nAbout\n\n\nThe AutoMaths project aim to create an helper for automated theorem proving using Coq.\n\n\nThis repository contain the sources used to create the dataset, for more details\nabout this check out the \nData page\n.\n\n\nFeatures: (see \nRoadmap\n for more details)\n\n\n\n\n Coq files dataset\n\n\n Dependencies graph\n\n\n Model\n\n\n Coq ecosystem integration\n\n\n\n\nRequirements\n\n\n\n\nmake\n\n\npython3\n (tested with python 3.4.5)\n\n\npip\n\n\nOptional: \njupyter\n for visualization\n\n\n\n\nInstall\n\n\n# Clone the GitHub repository\n\ngit clone https://github.com/Xide/AutoMaths.git\n\n\n# Install the python dependencies (can be seen in requirements.txt)\n\n\n# Default install them in the user home directory.\n\nmake install\n\n\n# Build the dataset\n\n\n# You can add the -j flag for faster preprocessing\n\nmake preprocess \n# -j 9\n\n\n\n# Optional: If you want to edit the documentation",
             "title": "Home"
         },
         {
@@ -11,58 +11,23 @@
             "title": "AutoMaths"
         },
         {
-            "location": "/#context",
-            "text": "The AutoMaths project aim to create an helper for automated theorem proving using Coq.",
-            "title": "Context"
-        },
-        {
-            "location": "/#limits",
-            "text": "",
-            "title": "Limits"
+            "location": "/#about",
+            "text": "The AutoMaths project aim to create an helper for automated theorem proving using Coq.  This repository contain the sources used to create the dataset, for more details\nabout this check out the  Data page .  Features: (see  Roadmap  for more details)    Coq files dataset   Dependencies graph   Model   Coq ecosystem integration",
+            "title": "About"
         },
         {
             "location": "/#requirements",
-            "text": "Python3 (tested with python 3.4.5)  Tensorflow",
+            "text": "make  python3  (tested with python 3.4.5)  pip  Optional:  jupyter  for visualization",
             "title": "Requirements"
         },
         {
             "location": "/#install",
-            "text": "# Clone the GitHub repository\ngit clone https://github.com/Xide/AutoMaths.git\n\n# Install the python dependencies (can be seen in requirements.txt)\n# Default install them in the user home directory.\nmake install\n\n# Optional : if you want to build the dataset\n# Clone the data repositories\nmake download\n# You can add the -j flag for faster preprocessing\nmake preprocess # -j 9",
+            "text": "# Clone the GitHub repository \ngit clone https://github.com/Xide/AutoMaths.git # Install the python dependencies (can be seen in requirements.txt)  # Default install them in the user home directory. \nmake install # Build the dataset  # You can add the -j flag for faster preprocessing \nmake preprocess  # -j 9  # Optional: If you want to edit the documentation",
             "title": "Install"
         },
         {
-            "location": "/#usage",
-            "text": "",
-            "title": "Usage"
-        },
-        {
-            "location": "/#architecture",
-            "text": "",
-            "title": "Architecture"
-        },
-        {
-            "location": "/#neural-network",
-            "text": "",
-            "title": "Neural network"
-        },
-        {
-            "location": "/#dnc-framework",
-            "text": "Implementation  Paper  Blog post",
-            "title": "DNC framework"
-        },
-        {
-            "location": "/#training",
-            "text": "",
-            "title": "Training"
-        },
-        {
-            "location": "/#issues",
-            "text": "The token stream and raw text shouldn't be handled by different networks.\nThis could be solved by training the network with different kind of input datas,\nas deepmind did on the DNC paper. Or we could encode the token type into the\nneural network input along with the raw stream.    The network should learn categorical data instead of an unstructured character\nstream. We need to find a way to turn text data into categorical representations.\nWe could use one-hot encoding to do so, by encoding differently free text (such\n  as naming) and language operators to avoid confusion.    There is no Coq parser avaliable in Python, therefore, the dependencies parsing\nwill be done using regex, which is weaker than a generated  Yacc  parser. However\nas Coq was developped on the top of ML language, there is no centralised BNF grammar\navaliable.",
-            "title": "Issues"
-        },
-        {
             "location": "/data/",
-            "text": "Data\n\n\nSources\n\n\nHomotopy Type Theory\n\n\n\n\nHoTT source code\n\n\nFree online HoTT book\n\n\n\n\nUniMath repository\n\n\n\n\nUniMath source code\n\n\n\n\nPreprocessing\n\n\n\n\n\n\nmake preprocess\n\n\n\n\nDownload data from the Git repositories\n\n\nIterate over the files in repositories to parse the file name and\nthe package the file (and therefore it's constructs) are located in.\n\n\nUse the \npygments\n lexer to turn source code into raw token stream\n\n\nStore that \ntoken stream\n to filesystem, keeping only metadatas\n\n\nPackage each one into a separated self-contained csv file \ndata/agg.csv\n\n\n\n\n\n\n\n\nTODO:\n\n\n\n\nResolve dependencies for each definition\n\n\nCreate train and test dataset of proofs from \ndata/agg.csv\n\n\n\n\n\n\n\n\nExample\n\n\n\n\n\n\n\n\ntype\n\n\nRaw\n\n\n\n\n\n\n\n\n\n\nRaw input\n\n\nHere\n\n\n\n\n\n\nToken stream\n\n\nHere\n\n\n\n\n\n\nCSV dataset\n\n\nHere\n\n\n\n\n\n\n\n\nRaw input\n\n\nDefinition equiv_ind_comp `{IsEquiv A B f} (P : B -> Type)\n  (df : forall x:A, P (f x)) (x : A)\n  : equiv_ind f P df (f x) = df x.\nProof.\n  unfold equiv_ind.\n  rewrite eisadj.\n  rewrite <- transport_compose.\n  exact (apD df (eissect f x)).\nDefined.\n\n\n\n\nToken stream\n\n\nKeyword.Namespace 'Proof'\nOperator '.'\nKeyword 'unfold'\nName 'equiv_ind'\nOperator '.'\nKeyword 'rewrite'\nName 'eisadj'\nOperator '.'\nKeyword 'rewrite'\nOperator '<-'\nName 'transport_compose'\nOperator '.'\nKeyword.Pseudo 'exact'\nOperator '('\nName 'apD'\nName 'df'\nOperator '('\nName 'eissect'\nName 'f'\nName 'x'\nOperator ')'\nOperator ')'\nOperator '.'\nKeyword.Namespace 'Defined'\n\n\n\n\n Aggregated CSV dataset\n\n\n,file_id,token_id,file,token,raw,proof_context,proof_id\n0,0.0,0.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Keyword.Namespace,Require,,\n1,0.0,1.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Text, ,,\n2,0.0,2.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Keyword.Namespace,Import,,\n3,0.0,3.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Text, ,,\n\n...\n\n15546,590.0,15546.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Keyword,apply,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0\n15547,590.0,15547.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Text, ,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0\n15548,590.0,15548.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Name,i,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0\n15549,590.0,15549.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Operator,.,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0\n15550,590.0,15550.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Text,\\n,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0\n15551,590.0,15551.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Keyword.Namespace,Defined,leave,91652a12-40a4-4e5d-ba1e-4cceee1a28a0\n\n\n\n\n\n\nAnalysis\n\n\nToken types\n\n\nRepartition of the tokens on the raw dataset (\ndata/agg.csv\n) containing the whole token streams.\n\n\n\n\nData cleaning operations :\n\n\n\n\nRemove empty texts tokens as they are irrelevent to learn\n\n\nRemoved comments tokens\n\n\nRemoved file with lexing errors\n\n\n\n\n\n\nTokens located directly in proofs, including definitions.",
+            "text": "Data\n\n\nSources\n\n\nHomotopy Type Theory\n\n\n\n\nHoTT source code\n\n\nFree online HoTT book\n\n\n\n\nUniMath repository\n\n\n\n\nUniMath source code\n\n\n\n\nPreprocessing\n\n\n\n\nmake preprocess\n\n\n\n\n\n\n\n\n\n\nFile\n\n\nUsage\n\n\n\n\n\n\n\n\n\n\ndata/download.sh\n\n\nDownload data from the Git repositories\n\n\n\n\n\n\nsrcs/preprocess/preprocess.py\n\n\nCreate intermediate files containing the \ntokens stream\n\n\n\n\n\n\nsrcs/preprocess/aggregate.py\n\n\nAggreate all intermediate files in a single csv dataset \ndata/agg.csv\n\n\n\n\n\n\nsrcs/preprocess/clean_dataset.py\n\n\nClean the aggregated dataset\n\n\n\n\n\n\nsrcs/preprocess/dependencies.py\n\n\nGenerate dependency graph for the dataset \ndata/dependencies.gexf\n\n\n\n\n\n\n\n\nExample\n\n\n\n\n\n\n\n\ntype\n\n\nRaw\n\n\n\n\n\n\n\n\n\n\nRaw input\n\n\nHere\n\n\n\n\n\n\nToken stream\n\n\nHere\n\n\n\n\n\n\nCSV dataset\n\n\nHere\n\n\n\n\n\n\n\n\nRaw input\n\n\nDefinition equiv_ind_comp `{IsEquiv A B f} (P : B -> Type)\n  (df : forall x:A, P (f x)) (x : A)\n  : equiv_ind f P df (f x) = df x.\nProof.\n  unfold equiv_ind.\n  rewrite eisadj.\n  rewrite <- transport_compose.\n  exact (apD df (eissect f x)).\nDefined.\n\n\n\n\nToken stream\n\n\nKeyword.Namespace 'Proof'\nOperator '.'\nKeyword 'unfold'\nName 'equiv_ind'\nOperator '.'\nKeyword 'rewrite'\nName 'eisadj'\nOperator '.'\nKeyword 'rewrite'\nOperator '<-'\nName 'transport_compose'\nOperator '.'\nKeyword.Pseudo 'exact'\nOperator '('\nName 'apD'\nName 'df'\nOperator '('\nName 'eissect'\nName 'f'\nName 'x'\nOperator ')'\nOperator ')'\nOperator '.'\nKeyword.Namespace 'Defined'\n\n\n\n\n Aggregated CSV dataset\n\n\n\n\n\n\n\n\n\n\nfile_id\n\n\ntoken_id\n\n\nfile\n\n\ntoken\n\n\nraw\n\n\nproof_context\n\n\nproof_id\n\n\n\n\n\n\n\n\n\n\n0\n\n\n0\n\n\n0\n\n\n/HoTT/theories/ExcludedMiddle\n\n\nKeyword.Namespace\n\n\nRequire\n\n\n\n\n\n\n\n\n\n\n1\n\n\n0\n\n\n1\n\n\n/HoTT/theories/ExcludedMiddle\n\n\nText\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n0\n\n\n2\n\n\n/HoTT/theories/ExcludedMiddle\n\n\nKeyword.Namespace\n\n\nImport\n\n\n\n\n\n\n\n\n\n\n3\n\n\n0\n\n\n3\n\n\n/HoTT/theories/ExcludedMiddle\n\n\nText\n\n\n\n\n\n\n\n\n\n\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n\n\n\n\n15554\n\n\n590\n\n\n15554\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nComment\n\n\n(*\n\n\n\n\n\n\n\n\n\n\n15555\n\n\n590\n\n\n15555\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nComment\n\n\n*\n\n\n\n\n\n\n\n\n\n\n15556\n\n\n590\n\n\n15556\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nComment\n\n\nEND OF FILE\n\n\n\n\n\n\n\n\n\n\n15557\n\n\n590\n\n\n15557\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nComment\n\n\n*)\n\n\n\n\n\n\n\n\n\n\n15558\n\n\n590\n\n\n15558\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nText\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\n Cleaned CSV dataset\n\n\n\n\n\n\n\n\n\n\nfile_id\n\n\ntoken_id\n\n\nfile\n\n\ntoken\n\n\nraw\n\n\nproof_context\n\n\nproof_id\n\n\n\n\n\n\n\n\n\n\n0\n\n\n0\n\n\n0\n\n\n/HoTT/theories/ExcludedMiddle\n\n\nKeyword.Namespace\n\n\nRequire\n\n\n\n\n\n\n\n\n\n\n2\n\n\n0\n\n\n1\n\n\n/HoTT/theories/ExcludedMiddle\n\n\nKeyword.Namespace\n\n\nImport\n\n\n\n\n\n\n\n\n\n\n4\n\n\n0\n\n\n2\n\n\n/HoTT/theories/ExcludedMiddle\n\n\nName\n\n\nHoTT\n\n\n\n\n\n\n\n\n\n\n5\n\n\n0\n\n\n3\n\n\n/HoTT/theories/ExcludedMiddle\n\n\nOperator\n\n\n.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n...\n\n\n\n\n\n\n15550\n\n\n590\n\n\n8936\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nText\n\n\n\\n\n\n\n\n\n0ccaca46-cbd3-4641-b18e-fd448ffbf0fe\n\n\n\n\n\n\n15551\n\n\n590\n\n\n8937\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nKeyword.Namespace\n\n\nDefined\n\n\nleave\n\n\n0ccaca46-cbd3-4641-b18e-fd448ffbf0fe\n\n\n\n\n\n\n15552\n\n\n590\n\n\n8938\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nOperator\n\n\n.\n\n\n\n\n\n\n\n\n\n\n15553\n\n\n590\n\n\n8939\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nText\n\n\n\\n\\n\n\n\n\n\n\n\n\n\n\n\n15558\n\n\n590\n\n\n8940\n\n\n/UniMath/UniMath/PAdics/lemmas\n\n\nText\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalysis\n\n\nToken types\n\n\nRepartition of the tokens on the raw dataset (\ndata/agg.csv\n) containing the whole token streams.\n\n\n\n\nData cleaning operations :\n\n\n\n\nRemove empty texts tokens as they are irrelevent to learn\n\n\nRemoved comments tokens\n\n\nRemoved file with lexing errors\n\n\n\n\n\n\nTokens located directly in proofs, including definitions.\n\n\n\n\nProofs",
             "title": "Data"
         },
         {
@@ -87,7 +52,7 @@
         },
         {
             "location": "/data/#preprocessing",
-            "text": "make preprocess   Download data from the Git repositories  Iterate over the files in repositories to parse the file name and\nthe package the file (and therefore it's constructs) are located in.  Use the  pygments  lexer to turn source code into raw token stream  Store that  token stream  to filesystem, keeping only metadatas  Package each one into a separated self-contained csv file  data/agg.csv     TODO:   Resolve dependencies for each definition  Create train and test dataset of proofs from  data/agg.csv",
+            "text": "make preprocess      File  Usage      data/download.sh  Download data from the Git repositories    srcs/preprocess/preprocess.py  Create intermediate files containing the  tokens stream    srcs/preprocess/aggregate.py  Aggreate all intermediate files in a single csv dataset  data/agg.csv    srcs/preprocess/clean_dataset.py  Clean the aggregated dataset    srcs/preprocess/dependencies.py  Generate dependency graph for the dataset  data/dependencies.gexf",
             "title": "Preprocessing"
         },
         {
@@ -104,6 +69,66 @@
             "location": "/data/#token-types",
             "text": "Repartition of the tokens on the raw dataset ( data/agg.csv ) containing the whole token streams.   Data cleaning operations :   Remove empty texts tokens as they are irrelevent to learn  Removed comments tokens  Removed file with lexing errors    Tokens located directly in proofs, including definitions.",
             "title": "Token types"
+        },
+        {
+            "location": "/data/#proofs",
+            "text": "",
+            "title": "Proofs"
+        },
+        {
+            "location": "/implementation/",
+            "text": "Implementation\n\n\nThis section discuss some of the machine learning models and methods envisaged to\npredict the proofs content from the definition.\n\n\nTraining\n\n\nI guess than since the quantity of datas is small, the best chance for a model\nto predict proofs content is to use reinforcment learning and check the model\ncorrectness using Coq directly.\nThis process enable the algorithm to solve training problems in any possible way, and not only\nby outputing the exact same proof as the original one.\n\n\nHowever, since the number of trial is expected to be very high, especially\nat the beginning, we could use the original proof to guide learning :\nThe closest the model is from the original proof, the higher is the reward.\nBy lowering the original proof influence over time, we could achieve both\na faster bootstrap of the model and reinforcment learning freedom.\n\n\nMoreover, train/test dataset split are more complex than a \nsklearn.train_test_split\n,\nbecause the dataset is highly structured, we can't just take one random part as the test case.\nWe first need to retreive the different proofs in the dataset\n(a python function has been developed in \nsrcs/utils/proofs.py\n to iterate over them),\nthen we need to structurate the proofs to avoid using a testing proof at training step because it was\nimplicitly included in a dependency. We therefore need to ensure that proofs in the testing/validation dataset\ncannot be included anywhere in the training set.\n\n\nLastly, the model will need ordering on the input datas:\n\n\n\n\nLearn the axioms\n\n\nLearn the context (e.g: proofs included in dependencies)\n\n\nThe definiton to be solved\n\n\n\n\nModels\n\n\nThe common point of those models is that they all are recurrent, this\nis because the nature of the input and output are inherently sequential.\n\n\nImagination Augmented Agents\n\n\nThis architecture, published by Deepmind, will in my opinion be the best fit for this problem.\nThe capacity of the agent to plan for the long term reward can, according to the result published in their\npaper, divide the number of simulation steps required to solve a sokoban level by 25 (in comparison with optimized Monte Carlo Tree Search)\n\n\n\n\nImplementation - None at the moment.\n\n\nPaper\n\n\nDeepmind blog post\n\n\n\n\nDNC framework\n\n\n\n\nImplementation\n\n\nPaper\n\n\nDeepmind blog post\n\n\n\n\nLimits\n\n\nTechnical issues\n\n\n\n\n\n\nAs i wasn't able to find a Coq parser in python, the parsing features had to\n  be rewriten from scratch in python, this has two drawbacks:\n\n\n\n\nIt is weaker than a parser, some issues with the lexing and the context\n    require a lot of code to solve, and is more sensitive to bugs.\n\n\nAs it is all written in Python, it take more time to process the data.\n    This drawback is much less impacting than the first one, as the amount\n     of avaliable Coq files is relatively ysmall and need to be processed\n     only once.\n\n\n\n\n\n\n\n\nThe model could make use of categorical data instead of an unstructured character\n stream. We need to find a way to turn text data into categorical representations.\n We could use one-hot encoding to do so, by encoding differently free text (such\n   as naming) and language operators to avoid confusion.\n\n\n\n\n\n\nA reinforcment learning model would have to have it's output tested against coq to\nensure the proof correctness, however this is an expensive process, it can easily\nbecome the learning process bottleneck.\n\n\n\n\n\n\nLearning issues\n\n\n\n\n\n\nThe token stream and raw text shouldn't be handled by different models.\nThis could be solved by training them with different kind of input datas,\nas deepmind did on their DNC paper. Or we could encode the token type into the\nmodel input along with the raw stream.\n\n\n\n\n\n\nThe required number of simulations for reinforcment learning is high and the\nsimulations are costly.",
+            "title": "Implementation"
+        },
+        {
+            "location": "/implementation/#implementation",
+            "text": "This section discuss some of the machine learning models and methods envisaged to\npredict the proofs content from the definition.",
+            "title": "Implementation"
+        },
+        {
+            "location": "/implementation/#training",
+            "text": "I guess than since the quantity of datas is small, the best chance for a model\nto predict proofs content is to use reinforcment learning and check the model\ncorrectness using Coq directly.\nThis process enable the algorithm to solve training problems in any possible way, and not only\nby outputing the exact same proof as the original one.  However, since the number of trial is expected to be very high, especially\nat the beginning, we could use the original proof to guide learning :\nThe closest the model is from the original proof, the higher is the reward.\nBy lowering the original proof influence over time, we could achieve both\na faster bootstrap of the model and reinforcment learning freedom.  Moreover, train/test dataset split are more complex than a  sklearn.train_test_split ,\nbecause the dataset is highly structured, we can't just take one random part as the test case.\nWe first need to retreive the different proofs in the dataset\n(a python function has been developed in  srcs/utils/proofs.py  to iterate over them),\nthen we need to structurate the proofs to avoid using a testing proof at training step because it was\nimplicitly included in a dependency. We therefore need to ensure that proofs in the testing/validation dataset\ncannot be included anywhere in the training set.  Lastly, the model will need ordering on the input datas:   Learn the axioms  Learn the context (e.g: proofs included in dependencies)  The definiton to be solved",
+            "title": "Training"
+        },
+        {
+            "location": "/implementation/#models",
+            "text": "The common point of those models is that they all are recurrent, this\nis because the nature of the input and output are inherently sequential.",
+            "title": "Models"
+        },
+        {
+            "location": "/implementation/#imagination-augmented-agents",
+            "text": "This architecture, published by Deepmind, will in my opinion be the best fit for this problem.\nThe capacity of the agent to plan for the long term reward can, according to the result published in their\npaper, divide the number of simulation steps required to solve a sokoban level by 25 (in comparison with optimized Monte Carlo Tree Search)   Implementation - None at the moment.  Paper  Deepmind blog post",
+            "title": "Imagination Augmented Agents"
+        },
+        {
+            "location": "/implementation/#dnc-framework",
+            "text": "Implementation  Paper  Deepmind blog post",
+            "title": "DNC framework"
+        },
+        {
+            "location": "/implementation/#limits",
+            "text": "",
+            "title": "Limits"
+        },
+        {
+            "location": "/implementation/#technical-issues",
+            "text": "As i wasn't able to find a Coq parser in python, the parsing features had to\n  be rewriten from scratch in python, this has two drawbacks:   It is weaker than a parser, some issues with the lexing and the context\n    require a lot of code to solve, and is more sensitive to bugs.  As it is all written in Python, it take more time to process the data.\n    This drawback is much less impacting than the first one, as the amount\n     of avaliable Coq files is relatively ysmall and need to be processed\n     only once.     The model could make use of categorical data instead of an unstructured character\n stream. We need to find a way to turn text data into categorical representations.\n We could use one-hot encoding to do so, by encoding differently free text (such\n   as naming) and language operators to avoid confusion.    A reinforcment learning model would have to have it's output tested against coq to\nensure the proof correctness, however this is an expensive process, it can easily\nbecome the learning process bottleneck.",
+            "title": "Technical issues"
+        },
+        {
+            "location": "/implementation/#learning-issues",
+            "text": "The token stream and raw text shouldn't be handled by different models.\nThis could be solved by training them with different kind of input datas,\nas deepmind did on their DNC paper. Or we could encode the token type into the\nmodel input along with the raw stream.    The required number of simulations for reinforcment learning is high and the\nsimulations are costly.",
+            "title": "Learning issues"
+        },
+        {
+            "location": "/roadmap/",
+            "text": "Roadmap & Future work\n\n\n\n\n Dataset creation\n\n\n Pipeline automation ( see \nMakefile\n )\n\n\n Download Coq source coq for processing ( see \nmake download\n)\n\n\n\n\n Extract and aggreate token streams (and metadata) of all the source files\n\n\n\n\n\n\n Cleaning\n\n\n\n\n Useless values removal (e.g: empty space text token)\n\n\n Lexing error handling (currently ignored)\n\n\n\n\n\n\n\n\n Dependencies extraction\n\n\n\n\n Dependency graph creation (see \nsrcs/preprocess/dependencies.py\n)\n\n\n Use a parser instead of raw token streams\n\n\n Reduce the scope of the dependency (currently: file level)\n\n\n Handle loops in the dependency graph (currently the whole loop is cleaned from graph)\n\n\n\n\n\n\n\n\n Implementation\n\n\n\n\n Command line interface to experiment (baked by \nsacred\n)\n\n\n Proof generation\n\n\n Utility to iterate over proofs\n\n\n Context aware proof picker (e.g: following a specific set of axioms)\n\n\n\n\n\n\n Coq environment integration\n\n\n Models\n\n\n Differentiable neural computer\n\n\n Imagination augmented agent\n\n\n\n\n\n\n\n\n Deployment\n\n\n\n\n Documentation (using travis-ci, github pages and mkdocs)\n\n\n Generated dataset artifacts\n\n\n\n\n\n\n\n\n Documentation\n\n\n\n\n Dataset creation\n\n\n Implementation\n\n\n Models presentation\n\n\n Project limits presentation",
+            "title": "Roadmap"
+        },
+        {
+            "location": "/roadmap/#roadmap-future-work",
+            "text": "Dataset creation   Pipeline automation ( see  Makefile  )   Download Coq source coq for processing ( see  make download )    Extract and aggreate token streams (and metadata) of all the source files     Cleaning    Useless values removal (e.g: empty space text token)   Lexing error handling (currently ignored)      Dependencies extraction    Dependency graph creation (see  srcs/preprocess/dependencies.py )   Use a parser instead of raw token streams   Reduce the scope of the dependency (currently: file level)   Handle loops in the dependency graph (currently the whole loop is cleaned from graph)      Implementation    Command line interface to experiment (baked by  sacred )   Proof generation   Utility to iterate over proofs   Context aware proof picker (e.g: following a specific set of axioms)     Coq environment integration   Models   Differentiable neural computer   Imagination augmented agent      Deployment    Documentation (using travis-ci, github pages and mkdocs)   Generated dataset artifacts      Documentation    Dataset creation   Implementation   Models presentation   Project limits presentation",
+            "title": "Roadmap &amp; Future work"
         }
     ]
 }
