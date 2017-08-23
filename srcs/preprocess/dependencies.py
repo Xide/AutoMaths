@@ -362,7 +362,16 @@ def dependency_graph(df, clean_graph_loops=True):
 
 
 def rec_deps(graph, n, context={}):
-    """Aggregate the dependencies in a (count, deps) list."""
+    """Aggregate the dependencies in a (count, deps) list.
+
+    Example:
+    >>>    deps = reduce(
+    >>>        lambda x, y: rec_deps(graph, y, context=x),
+    >>>        graph.nodes(),
+    >>>        {}
+    >>>    )
+    >>>    deps = sorted(deps.items(), key=lambda x: x[1])
+    """
     def merge_dicts(x, y):
         z = x.copy()
         z.update(y)
@@ -420,12 +429,7 @@ if __name__ == '__main__':
     print('Loading dataframe into memory')
     df = pd.DataFrame.from_csv(args.source)
     print('Generating dependency graph from dataset.')
-
     graph = dependency_graph(df)
-    deps = reduce(
-        lambda x, y: rec_deps(graph, y, context=x),
-        graph.nodes(),
-        {}
-    )
-    deps = sorted(deps.items(), key=lambda x: x[1])
-    print(deps)
+    if args.output:
+        print('Exporting graph to', args.output)
+        nx.write_gexf(graph, args.output)

@@ -3,7 +3,7 @@ data/objs
 data/runs
 *.ans
 *.om
-
+*.gexf
 
 # Created by https://www.gitignore.io/api/coq,data,linux,python,archive
 
