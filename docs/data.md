@@ -11,16 +11,14 @@
 
 
 * `make preprocess`
-    - Download data from the Git repositories
-    - Iterate over the files in repositories to parse the file name and
-    the package the file (and therefore it's constructs) are located in.
-    - Use the `pygments` lexer to turn source code into raw token stream
-    - Store that [token stream](#token_stream) to filesystem, keeping only metadatas
-    - Package each one into a separated self-contained csv file `data/agg.csv`
 
-* TODO:
-    1. Resolve dependencies for each definition
-    2. Create train and test dataset of proofs from `data/agg.csv`
+| File | Usage |
+|------|-------|
+| data/download.sh                  | Download data from the Git repositories |
+| srcs/preprocess/preprocess.py     | Create intermediate files containing the [tokens stream](#token_stream) |
+| srcs/preprocess/aggregate.py      | Aggreate all intermediate files in a single csv dataset `data/agg.csv` |
+| srcs/preprocess/clean_dataset.py  | Clean the aggregated dataset |
+| srcs/preprocess/dependencies.py   | Generate dependency graph for the dataset `data/dependencies.gexf` |
 
 ### Example
 
@@ -75,24 +73,35 @@ Keyword.Namespace 'Defined'
 
 #### <a name="csv_agg"></a> Aggregated CSV dataset
 
-```csv
-,file_id,token_id,file,token,raw,proof_context,proof_id
-0,0.0,0.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Keyword.Namespace,Require,,
-1,0.0,1.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Text, ,,
-2,0.0,2.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Keyword.Namespace,Import,,
-3,0.0,3.0,/automaths/data/objs/HoTT/theories/ExcludedMiddle.vo,Text, ,,
+|       | file_id | token_id | file                           | token             | raw           | proof_context | proof_id |
+|-------|---------|----------|--------------------------------|-------------------|---------------|---------------|----------|
+| 0     | 0     | 0      | /HoTT/theories/ExcludedMiddle  | Keyword.Namespace | Require       |               |          |
+| 1     | 0     | 1      | /HoTT/theories/ExcludedMiddle  | Text              |               |               |          |
+| 2     | 0     | 2      | /HoTT/theories/ExcludedMiddle  | Keyword.Namespace | Import        |               |          |
+| 3     | 0     | 3      | /HoTT/theories/ExcludedMiddle  | Text              |               |               |          |
+| ...   | ...     | ...      | ...                            | ...               | ...           | ...           | ...      |
+| 15554 | 590   | 15554  | /UniMath/UniMath/PAdics/lemmas | Comment           | (*            |               |          |
+| 15555 | 590   | 15555  | /UniMath/UniMath/PAdics/lemmas | Comment           | *             |               |          |
+| 15556 | 590   | 15556  | /UniMath/UniMath/PAdics/lemmas | Comment           |  END OF FILE  |               |          |
+| 15557 | 590   | 15557  | /UniMath/UniMath/PAdics/lemmas | Comment           | *)            |               |          |
+| 15558 | 590   | 15558  | /UniMath/UniMath/PAdics/lemmas | Text              | \n            |               |          |
 
-...
+#### <a name="csv_clean"></a> Cleaned CSV dataset
 
-15546,590.0,15546.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Keyword,apply,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15547,590.0,15547.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Text, ,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15548,590.0,15548.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Name,i,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15549,590.0,15549.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Operator,.,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15550,590.0,15550.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Text,\n,,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
-15551,590.0,15551.0,/automaths/data/objs/UniMath/UniMath/PAdics/lemmas.vo,Keyword.Namespace,Defined,leave,91652a12-40a4-4e5d-ba1e-4cceee1a28a0
+|       | file_id | token_id | file                           | token             | raw     | proof_context | proof_id                             |
+|-------|---------|----------|--------------------------------|-------------------|---------|---------------|--------------------------------------|
+| 0     | 0     | 0        | /HoTT/theories/ExcludedMiddle  | Keyword.Namespace | Require |               |                                      |
+| 2     | 0     | 1        | /HoTT/theories/ExcludedMiddle  | Keyword.Namespace | Import  |               |                                      |
+| 4     | 0     | 2        | /HoTT/theories/ExcludedMiddle  | Name              | HoTT    |               |                                      |
+| 5     | 0     | 3        | /HoTT/theories/ExcludedMiddle  | Operator          | .       |               |                                      |
+|       |         |          |                                |                   |         |               |                                      |
+| ...   | ...     | ...      | ...                            | ...               | ...     | ...           | ...                                  |
+| 15550 | 590   | 8936     | /UniMath/UniMath/PAdics/lemmas | Text              | \n      |               | 0ccaca46-cbd3-4641-b18e-fd448ffbf0fe |
+| 15551 | 590   | 8937     | /UniMath/UniMath/PAdics/lemmas | Keyword.Namespace | Defined | leave         | 0ccaca46-cbd3-4641-b18e-fd448ffbf0fe |
+| 15552 | 590   | 8938     | /UniMath/UniMath/PAdics/lemmas | Operator          | .       |               |                                      |
+| 15553 | 590   | 8939     | /UniMath/UniMath/PAdics/lemmas | Text              | \n\n    |               |                                      |
+| 15558 | 590   | 8940     | /UniMath/UniMath/PAdics/lemmas | Text              | \n      |               |                                      |
 
-
-```
 
 ## Analysis
 
@@ -114,3 +123,6 @@ Data cleaning operations :
 Tokens located directly in proofs, including definitions.
 
 ![](assets/proof_token_repartition.png)
+
+
+### Proofs
