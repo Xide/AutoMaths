@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/",
-            "text": "AutoMaths\n\n\n\n\nAbout\n\n\nThe AutoMaths project aim to create an helper for automated theorem proving using Coq.\n\n\nThis repository contain the sources used to create the dataset, for more details\nabout this check out the \nData page\n.\n\n\nFeatures: (see \nRoadmap\n for more details)\n\n\n\n\n Coq files dataset\n\n\n Dependencies graph\n\n\n Model\n\n\n Coq ecosystem integration\n\n\n\n\nRequirements\n\n\n\n\nmake\n\n\npython3\n (tested with python 3.4.5)\n\n\npip\n\n\nOptional: \njupyter\n for visualization\n\n\n\n\nInstall\n\n\n# Clone the GitHub repository\n\ngit clone https://github.com/Xide/AutoMaths.git\n\n\n# Install the python dependencies (can be seen in requirements.txt)\n\n\n# Default install them in the user home directory.\n\nmake install\n\n\n# Build the dataset\n\n\n# You can add the -j flag for faster preprocessing\n\nmake preprocess \n# -j 9\n\n\n\n# Optional: If you want to edit the documentation",
+            "text": "AutoMaths\n\n\n\n\nAbout\n\n\nThe AutoMaths project aim to create an helper for automated theorem proving using Coq.\n\n\nThis repository contain the sources used to create the dataset, for more details\nabout this check out the \nData page\n.\n\n\nFeatures: (see \nRoadmap\n for more details)\n\n\n\n\n Coq files dataset\n\n\n Dependencies graph\n\n\n Model\n\n\n Coq ecosystem integration\n\n\n\n\nRequirements\n\n\n\n\nmake\n\n\npython3\n (tested with python 3.4.5)\n\n\npip\n\n\nOptional: \njupyter\n for visualization\n\n\n\n\nInstall\n\n\n# Clone the GitHub repository\n\ngit clone https://github.com/Xide/AutoMaths.git\n\n\n# Install the python dependencies (can be seen in requirements.txt)\n\n\n# Default install them in the user home directory.\n\nmake install\n\n\n# Download the datas to preprocess\n\nmake download\n\n\n# Build the dataset\n\n\n# You can add the -j flag for faster preprocessing\n\nmake preprocess \n# -j 9\n\n\n\n# Optional: If you want to edit the documentation\n\nmake install_docs\n\n# spawn livereload HTTP server on localhost:8000\n\nmkdocs serve",
             "title": "Home"
         },
         {
@@ -22,7 +22,7 @@
         },
         {
             "location": "/#install",
-            "text": "# Clone the GitHub repository \ngit clone https://github.com/Xide/AutoMaths.git # Install the python dependencies (can be seen in requirements.txt)  # Default install them in the user home directory. \nmake install # Build the dataset  # You can add the -j flag for faster preprocessing \nmake preprocess  # -j 9  # Optional: If you want to edit the documentation",
+            "text": "# Clone the GitHub repository \ngit clone https://github.com/Xide/AutoMaths.git # Install the python dependencies (can be seen in requirements.txt)  # Default install them in the user home directory. \nmake install # Download the datas to preprocess \nmake download # Build the dataset  # You can add the -j flag for faster preprocessing \nmake preprocess  # -j 9  # Optional: If you want to edit the documentation \nmake install_docs # spawn livereload HTTP server on localhost:8000 \nmkdocs serve",
             "title": "Install"
         },
         {
