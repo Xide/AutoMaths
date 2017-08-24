@@ -13,7 +13,7 @@ DEPENDENCY_GRAPH = $(PWD)/data/dependencies.gexf
 $(DATASET_CLEANED): $(DATASET_AGGREGATED)
 	python3 srcs/preprocess/clean_dataset.py -i $(DATASET_AGGREGATED) -o $(DATASET_CLEANED)
 
-$(DATASET_AGGREGATED): $(SRC_DIR) $(OBJ)
+$(DATASET_AGGREGATED): $(OBJ)
 	python3 srcs/preprocess/aggregate.py -s $(OBJ_DIR) -o $(DATASET_AGGREGATED)
 
 $(SRC_DIR):
@@ -26,7 +26,7 @@ $(OBJ_DIR)/%.vo: $(SRC_DIR)/%.v
 $(DEPENDENCY_GRAPH): $(DATASET_CLEANED)
 	python3 srcs/preprocess/dependencies.py $(DATASET_CLEANED) --output $(DEPENDENCY_GRAPH)
 
-all: preprocess
+download: $(SRC_DIR)
 
 preprocess: $(DATASET_CLEANED) $(DEPENDENCY_GRAPH)
 
@@ -61,4 +61,5 @@ re: clean all
 	fclean \
 	clean_downloads \
 	install \
+	install_docs \
 	preprocess

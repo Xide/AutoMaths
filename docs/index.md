@@ -33,10 +33,15 @@ git clone https://github.com/Xide/AutoMaths.git
 # Default install them in the user home directory.
 make install
 
+# Download the datas to preprocess
+make download
+
 # Build the dataset
 # You can add the -j flag for faster preprocessing
 make preprocess # -j 9
 
 # Optional: If you want to edit the documentation
-
+make install_docs
+# spawn livereload HTTP server on localhost:8000
+mkdocs serve
 ```
